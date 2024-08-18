@@ -64,36 +64,7 @@ app.get("/leads", async (req, res) => {
   }
 });
 
-app.get("/leads/twitter", async (req, res) => {
-  try {
-    const twitterHandle = req.query.twitter;
-
-    if (!twitterHandle) {
-      return res.status(400).json({ message: "Twitter handle is required" });
-    }
-
-    console.log("Received Twitter handle:", twitterHandle);
-
-    // Find leads where the twitter field matches the provided handle
-    const lead = await Lead.findOne({ twitter: twitterHandle });
-
-    console.log("Found lead:", lead);
-
-    if (!lead) {
-      return res
-        .status(404)
-        .json({ message: "No lead found with the provided Twitter handle" });
-    }
-
-    // Return only the _id field
-    res.json({ _id: lead._id });
-  } catch (error) {
-    console.error("Error fetching lead:", error);
-    res.status(500).json({ message: "Server error", error });
-  }
-});
-
-
+// GET request to fetch leads by industry
 app.get("/leads/industry/:industry", async (req, res) => {
   try {
     const industry = req.params.industry;
@@ -114,8 +85,6 @@ app.get("/leads/industry/:industry", async (req, res) => {
   }
 });
 
-
-
 app.get("/leads/twitter/:handle", async (req, res) => {
   try {
     const handle = req.params.handle;
@@ -131,11 +100,9 @@ app.get("/leads/twitter/:handle", async (req, res) => {
   }
 });
 
-
-
 mongoose
   .connect(
-    "mongodb+srv://yashkshrivas1234:ygJuW5Lcq1xKgzYw@cluster1.180dy.mongodb.net/"
+    "mongodb+srv://kreupaideveloper:Vs4822btoVPknhST@cluster0.aaada.mongodb.net/"
   )
   .then(() => {
     console.log("Connected to database");
