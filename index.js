@@ -102,7 +102,7 @@ app.get("/leads/twitter/:handle", async (req, res) => {
 
 mongoose
   .connect(
-    "mongodb+srv://kreupaideveloper:Vs4822btoVPknhST@cluster0.aaada.mongodb.net/"
+    "mongodb+srv://BackendUser:rUOIpCKLc0oVpmtw@clusterkreupai.imb19.mongodb.net/"
   )
   .then(() => {
     console.log("Connected to database");
