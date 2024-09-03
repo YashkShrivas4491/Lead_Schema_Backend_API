@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -100,15 +102,29 @@ app.get("/leads/twitter/:handle", async (req, res) => {
   }
 });
 
+// mongoose
+//   .connect(
+//     "mongodb+srv://BackendUser:rUOIpCKLc0oVpmtw@clusterkreupai.imb19.mongodb.net/"
+//   )
+//   .then(() => {
+//     console.log("Connected to database");
+
+//     app.listen(3011, () => {
+//       console.log("Server is running on port 3011");
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Database connection error:", error);
+//   });
+
 mongoose
-  .connect(
-    "mongodb+srv://BackendUser:rUOIpCKLc0oVpmtw@clusterkreupai.imb19.mongodb.net/"
-  )
+  .connect(process.env.MONGODB_URI) // Use environment variable for MongoDB URI
   .then(() => {
     console.log("Connected to database");
 
-    app.listen(3011, () => {
-      console.log("Server is running on port 3011");
+    app.listen(process.env.PORT, () => {
+      // Use environment variable for port
+      console.log(`Server is running on port ${process.env.PORT}`);
     });
   })
   .catch((error) => {
